@@ -36,7 +36,10 @@ class MovieService: MovieService_Protocol {
     }
     
     func searchMovie(query: String, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        let urlString = String(format: "%@%@?api_key=%@&query=%@", MovieAPI.baseUrl, MovieAPI.EndPoints.searchMovie, MovieAPI.apiKey, query)
+        guard let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
+            return
+        }
+        let urlString = String(format: "%@%@?api_key=%@&query=%@", MovieAPI.baseUrl, MovieAPI.EndPoints.searchMovie, MovieAPI.apiKey, encodedQuery)
         print(urlString)
         httpManager.get(urlString: urlString) { result in
                 switch result {
