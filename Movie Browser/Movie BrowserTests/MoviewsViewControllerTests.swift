@@ -38,5 +38,11 @@ class MoviewsViewControllerTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         XCTAssertNotNil(moviesTableView)
     }
+    
+    func testIfSearchBarIsNotNil() throws {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        XCTAssertNotNil(viewController.movieView.searchBar)
+    }
 
 }
