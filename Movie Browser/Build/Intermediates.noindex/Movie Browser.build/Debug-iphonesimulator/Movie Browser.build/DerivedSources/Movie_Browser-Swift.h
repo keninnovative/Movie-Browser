@@ -251,6 +251,7 @@ SWIFT_CLASS("_TtC13Movie_Browser20MoviesViewController")
 @interface MoviesViewController : UIViewController
 - (void)loadView;
 - (void)viewDidLoad;
+- (void)onTapBgWithSender:(id _Nonnull)sender;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end

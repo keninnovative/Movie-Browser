@@ -23,10 +23,9 @@ extension MovieViewModel {
             switch result {
             case .success(let movies):
                 self.movies = movies
-                print(movies)
                 completion(.success(movies))
             case .failure(let error):
-                print(error.localizedDescription)
+                completion(.failure(error))
             }
         }
     }

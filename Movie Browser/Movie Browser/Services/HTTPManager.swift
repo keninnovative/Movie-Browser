@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HTTPManager {
+final class HTTPManager {
     static let shared: HTTPManager = HTTPManager()
 
     enum HTTPError: Error {
@@ -41,5 +41,19 @@ class HTTPManager {
             completionBlock(.success(responseData))
         }
         .resume()
+    }
+    
+    func downloadImage(imageURLString: String, completion: @escaping (Result<Data, Error>) -> Void) {
+        get(urlString: imageURLString) { result in
+                switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+                completion(.failure(error))
+            case .success(let data):
+                DispatchQueue.main.async() {
+                    completion(.success(data))
+                }
+            }
+        }
     }
 }

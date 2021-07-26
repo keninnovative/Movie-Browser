@@ -14,12 +14,10 @@ final class MovieCell: UITableViewCell {
             self.titleLabel.text = movie?.title
             self.overviewLabel.text = movie?.overview
             
-            guard let posterImagePath:String = movie?.posterPath,
-                  let posterUrl = URL(string: MovieAPI.imageDBBaseUrl + posterImagePath) else {
+            guard let posterImagePath:String = movie?.posterPath else {
                 return
             }
-           
-            self.posterImageView.load(url: posterUrl)
+            self.posterImageView.loadThumbnail(urlSting: MovieAPI.imageDBBaseUrl + posterImagePath)
         }
     }
     
@@ -48,8 +46,10 @@ final class MovieCell: UITableViewCell {
     let overviewLabel = MovieLabel(style: .caption1)
     
     private lazy var titleOverviewStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, overviewLabel])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, overviewLabel, UIView()])
         stackView.axis = .vertical
+        stackView.spacing = 12.0
+        stackView.alignment = .leading
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -67,5 +67,4 @@ final class MovieCell: UITableViewCell {
         safelyAddSubview(stackView)
         stackView.marginToSuperviewSafeArea(top: 12, bottom: 12, leading: 16, trailing: 16)
     }
-
 }
